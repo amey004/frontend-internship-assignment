@@ -22,6 +22,19 @@
   tw-w-200-px
 }
 
+.clear-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  border-radius: 4px;
+}
+
+.clear-button:hover {
+  background-color: #e5e1e1; /* Update color to darker shade on hover */
+}
+
+
 .trending-subjects {
   @apply
   tw-bg-table-header-bg
@@ -29,3 +42,47 @@
   tw-rounded-4-px
   tw-shadow-lg
 }
+
+.max-width-section{
+  width: 100%;
+}
+.table-wrapper {
+  position: relative;
+}
+
+.pagination-buttons {
+  position: absolute;
+  // bottom:0%;
+  right: 2%;
+}
+
+.noResult{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader::after {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #000;
+  animation: spin 0.8s infinite linear;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+

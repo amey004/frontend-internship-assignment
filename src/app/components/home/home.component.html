@@ -9,8 +9,13 @@
       placeholder="Search Books"
       class="tw-border-0 tw-bg-inherit"
     >
+    <button class="clear-button" mat-icon-button (click)="{}">
+      <mat-icon  aria-label="Clear Search">clear</mat-icon>
+    </button>
   </div>
 </div>
+
+<div>
 <div class="tw-flex tw-flex-row tw-m-24-px">
   <section class="trending-subjects">
     <div class="tw-font-600 tw-text-24-px">Trending Subjects</div>
@@ -20,4 +25,44 @@
       </li>
     </ul>
   </section>
+  <section class="max-width-section">
+    <div class="loader" *ngIf="isLoading">
+    </div>
+    <div *ngIf="allBooks.length > 0">
+      <div class="table-wrapper">
+        <front-end-internship-assignment-table-view
+        [booksList]="allBooks"
+        [subjectName]="searchQuery"
+        ></front-end-internship-assignment-table-view>
+        
+
+        <!-- Pagination buttons -->
+        <div class="pagination-buttons">
+          <button (click)="onPreviousPage()" [disabled]="currentPage===0">Previous</button>
+          <span>{{ currentPage + 1 }}/{{ totalPages }}</span>
+          <button (click)="onNextPage()" [disabled]="isLastPage()">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edge case handling for no search results -->
+    <div class="noResult" *ngIf="allBooks.length === 0 && searchQuery && !isLoading && !error">
+      <h1>No results found for your search query</h1>
+
+      <!-- Move to previous results in case there are no more results to display -->
+      <div *ngIf="currentPage>0">
+        <button (click)="onPreviousPage()" [disabled]="currentPage===0">Previous</button>
+      </div>
+    </div>
+
+    <!-- Error Handling -->
+    <div class="noResult" *ngIf="error">
+      <h1>{{error}}</h1>
+    </div>
+  </section>
+
+</div>
+<div >
+  
+</div>
 </div>
