@@ -21,3 +21,21 @@
     transform: rotate(360deg);
   }
 }
+
+.back-button {
+  background-color: #1e3a8a;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease-in-out;
+  margin-left: 1.5%;
+  margin-top: 1.5%;
+}
+
+.back-button:hover {
+  background-color: #24499e;
+}

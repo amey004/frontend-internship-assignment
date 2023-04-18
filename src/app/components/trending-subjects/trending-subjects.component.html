@@ -1,6 +1,7 @@
 <div class="loader" *ngIf="isLoading">
 </div>
 <div *ngIf="allBooks.length > 0">
+  <button class="back-button" (click)="goBack()">Back</button>
   <front-end-internship-assignment-table-view
   [booksList]="allBooks"
   [subjectName]="subjectName"

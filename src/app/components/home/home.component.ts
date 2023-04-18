@@ -35,6 +35,13 @@ export class HomeComponent implements OnInit {
   ];
   
 
+  //clear results
+  clearResults(){
+    this.searchQuery="";
+    this.bookSearch.patchValue("");
+    this.allBooks=[];
+  }
+
   //function to check if current page is last page
   isLastPage():boolean{
     return this.allBooks.length<10 || this.currentPage==9;
@@ -86,11 +93,15 @@ export class HomeComponent implements OnInit {
       ).
       subscribe({
         next:(value:string)=>{
-          console.log(value);
-          this.isLoading = true;
-          this.currentPage = 0;
-          this.searchQuery = value;
-          this.getSearchResults(value); 
+          if (value!="") {
+            console.log(value);
+            this.isLoading = true;
+            this.currentPage = 0;
+            this.searchQuery = value;
+            this.getSearchResults(value); 
+          }else{
+            this.clearResults();
+          }
         }
         });
   }

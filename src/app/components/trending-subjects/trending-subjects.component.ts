@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { SubjectsService } from '../../core/services/subjects.service';
 import { Book } from 'src/app/core/models/book-response.model';
+import { Location } from "@angular/common"
 
 @Component({
   selector: 'front-end-internship-assignment-trending-subjects',
@@ -9,7 +10,6 @@ import { Book } from 'src/app/core/models/book-response.model';
   styleUrls: ['./trending-subjects.component.scss'],
 })
 export class TrendingSubjectsComponent implements OnInit {
-
   isLoading: boolean = true;
 
   subjectName: string = '';
@@ -18,9 +18,14 @@ export class TrendingSubjectsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private subjectsService: SubjectsService
+    private subjectsService: SubjectsService,
+    private location: Location
   ) {}
 
+  goBack() {
+    this.location.back();
+  }
+  
   getAllBooks() {
     this.subjectsService.getAllBooks(this.subjectName).subscribe((data) => {
       this.allBooks = data?.works;
@@ -36,5 +41,4 @@ export class TrendingSubjectsComponent implements OnInit {
       this.getAllBooks();
     });
   }
-
 }
